@@ -45,6 +45,15 @@ public class Product {
     @JoinColumn(name = "product_subcategory_id_fk")
     private ProductSubcategory productSubcategory;
 
+ /*   @Column(name = "product_type_id")
+    private String productTypeName;
+
+    @Column(name = "product_category_id")
+    private String productCategoryId;
+
+    @Column(name = "product_subcategory_id")
+    private String productSubCategoryId;*/
+
 
     @ManyToMany
     @JoinTable(name = "product_product_size", joinColumns = @JoinColumn(name = "product_id_fk"),

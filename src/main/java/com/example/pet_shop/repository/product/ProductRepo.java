@@ -5,9 +5,23 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 
 @Repository
 @Transactional
 public interface ProductRepo extends JpaRepository<Product, Long> {
+
+
+
+  //  List<Product> findAllByProductSubcategory_ProductSubcategoryEngName(String subCategory);
+
+
+
+   // List<Product> findByProductSubcategory_ProductCategories_ProductCategoryEngName_And_ProductTypes_ProductTypeEngName(String category, String type);
+   List<Product> findByProductSubcategoryProductCategoriesProductTypesProductTypeEngName(String type);
+   List<Product> findByProductSubcategory_ProductCategories_ProductTypesProductTypeEngName_AndProductSubcategoryProductCategoriesProductCategoryEngName(String type, String category);
+    List<Product> findByProductSubcategory_ProductCategories_ProductTypesProductTypeEngName_AndProductSubcategoryProductCategoriesProductCategoryEngName_AndProductSubcategoryProductSubcategoryEngName(String type, String category, String subCategory);
+
+
 }
