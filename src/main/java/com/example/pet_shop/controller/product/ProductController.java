@@ -9,10 +9,16 @@ import com.example.pet_shop.repository.product.ProductCategoryRepo;
 import com.example.pet_shop.repository.product.ProductRepo;
 import com.example.pet_shop.repository.product.ProductSubcategoryRepo;
 import com.example.pet_shop.repository.product.ProductTypeRepo;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 
@@ -76,12 +82,25 @@ public class ProductController {
         return productRepo.findByProductSubcategory_ProductCategories_ProductTypesProductTypeEngName_AndProductSubcategoryProductCategoriesProductCategoryEngName_AndProductSubcategoryProductSubcategoryEngName(type, category, subCategory);
     }
 
-
     /*@GetMapping(value = "/catalog/{type}/{category}/{subCategory}", produces = {MediaType.APPLICATION_JSON_VALUE})
     public List<ProductSubcategory> getSubcategoryByTypeAndCategory(@PathVariable String subCategory){
         return productSubcategoryRepo.findAllByProductCategories_productCategoryEngName(category);
 
     }*/
+
+
+
+
+
+    @RequestMapping(value = "/image/{id}", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
+    public void getImageAsByteArray(HttpServletResponse response, @PathVariable("id") Long id) throws IOException {
+        Product product = productRepo.getOne(id);
+        System.out.println("--------" + product.getProductImage());
+        InputStream in = new FileInputStream(new File("D://pet_shop/images/" + product.getProductImage()));
+        System.out.println(product.getProductImage());
+        response.setContentType(MediaType.IMAGE_PNG_VALUE);
+        IOUtils.copy(in, response.getOutputStream());
+    }
 
 
 }

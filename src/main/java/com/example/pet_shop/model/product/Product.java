@@ -1,10 +1,8 @@
 package com.example.pet_shop.model.product;
 
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -60,5 +58,11 @@ public class Product {
             inverseJoinColumns = @JoinColumn(name = "product_size_id_fk"))
     List<ProductSize> productSizes;
 
+    public String getProductImage() {
+        return productImage;
+    }
 
+    public long getProductId() {
+        return productId;
+    }
 }
