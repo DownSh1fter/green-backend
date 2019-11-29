@@ -95,9 +95,9 @@ public class ProductController {
     @RequestMapping(value = "/image/{id}", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
     public void getImageAsByteArray(HttpServletResponse response, @PathVariable("id") Long id) throws IOException {
         Product product = productRepo.getOne(id);
-        System.out.println("--------" + product.getProductImage());
+       // System.out.println("--------" + product.getProductImage());
         InputStream in = new FileInputStream(new File("D://pet_shop/images/" + product.getProductImage()));
-        System.out.println(product.getProductImage());
+       // System.out.println(product.getProductImage());
         response.setContentType(MediaType.IMAGE_PNG_VALUE);
         IOUtils.copy(in, response.getOutputStream());
     }

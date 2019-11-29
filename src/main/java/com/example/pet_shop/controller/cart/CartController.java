@@ -29,4 +29,10 @@ public class CartController {
         return product;
     }
 
+
+    @DeleteMapping(value ="/cart/{id}")
+    public void deleteProductFromCartList(@PathVariable Long id){
+        cartService.deleteProductFromCartList(id);
+    }
+
 }

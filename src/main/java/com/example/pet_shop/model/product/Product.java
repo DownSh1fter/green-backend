@@ -1,10 +1,14 @@
 package com.example.pet_shop.model.product;
 
+import com.example.pet_shop.model.order.Order;
+import com.example.pet_shop.model.order.OrderProduct;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 
 @Getter
@@ -58,6 +62,10 @@ public class Product {
             inverseJoinColumns = @JoinColumn(name = "product_size_id_fk"))
     List<ProductSize> productSizes;
 
+
+    @OneToMany(mappedBy = "product")
+    List<OrderProduct> orderProducts;
+
     public String getProductImage() {
         return productImage;
     }
@@ -65,4 +73,6 @@ public class Product {
     public long getProductId() {
         return productId;
     }
+
+
 }
