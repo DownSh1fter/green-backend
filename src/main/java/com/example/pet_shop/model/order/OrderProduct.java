@@ -15,6 +15,7 @@ import java.io.Serializable;
 @Getter
 @NoArgsConstructor
 @Entity
+@Table(name = "order_product")
 public class OrderProduct {
 
     @EmbeddedId

@@ -24,4 +24,7 @@ public interface ProductRepo extends JpaRepository<Product, Long> {
     List<Product> findByProductSubcategory_ProductCategories_ProductTypesProductTypeEngName_AndProductSubcategoryProductCategoriesProductCategoryEngName_AndProductSubcategoryProductSubcategoryEngName(String type, String category, String subCategory);
 
 
+
+    List<Product> findByOrderProducts_Order_OrderId(Long id);
+
 }
