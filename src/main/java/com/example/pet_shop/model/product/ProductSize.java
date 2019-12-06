@@ -28,10 +28,19 @@ public class ProductSize {
     @ManyToMany(mappedBy = "productSizes")
     List<Product> products;
 
+    @Column(name = "product_price")
+    Double productPrice;
 
-    @ManyToMany
+
+   /*@OneToMany(mappedBy = "productSize")
+    List<ProductJoinSize> productJoinSizes;*/
+
+
+
+
+   /* @ManyToMany
     @JoinTable(name = "product_size_price", joinColumns = @JoinColumn(name = "product_size_id_fk"),
             inverseJoinColumns = @JoinColumn(name = "product_price_id_fk"))
-    List<ProductPrice> productPrices;
+    List<ProductPrice> productPrices;*/
 
 }

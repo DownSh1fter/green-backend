@@ -34,7 +34,48 @@ public class Order {
 
     @OneToMany(mappedBy = "order")
     List<OrderProduct> orderProducts;
+   /*@ManyToMany
+    @JoinTable(name = "order_product", joinColumns = @JoinColumn(name = "order_id_fk"),
+    inverseJoinColumns = @JoinColumn(name = "product_id_fk"))
+    List<Product> products;*/
 
+    public long getOrderId() {
+        return orderId;
+    }
 
+    public void setOrderId(long orderId) {
+        this.orderId = orderId;
+    }
 
+    public Double getOrderSumm() {
+        return orderSumm;
+    }
+
+    public void setOrderSumm(Double orderSumm) {
+        this.orderSumm = orderSumm;
+    }
+
+    public String getOrderDeliveryType() {
+        return orderDeliveryType;
+    }
+
+    public void setOrderDeliveryType(String orderDeliveryType) {
+        this.orderDeliveryType = orderDeliveryType;
+    }
+
+    public String getOrderDescription() {
+        return orderDescription;
+    }
+
+    public void setOrderDescription(String orderDescription) {
+        this.orderDescription = orderDescription;
+    }
+
+    public List<OrderProduct> getOrderProducts() {
+        return orderProducts;
+    }
+
+    public void setOrderProducts(List<OrderProduct> orderProducts) {
+        this.orderProducts = orderProducts;
+    }
 }

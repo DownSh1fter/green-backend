@@ -31,14 +31,14 @@ public class OrderProduct {
 
         @JsonIgnore
       @ManyToOne
-      @MapsId("order_id_fk")
-      @JoinColumn(name = "order_id_fk")
+      /*@MapsId("order_id_fk")*/
+      @JoinColumn(name = "order_id_fk", referencedColumnName = "order_id", insertable = false, updatable = false)
       Order order;
 
-        @JsonIgnore
+      //  @JsonIgnore
     @ManyToOne
-    @MapsId("product_id_fk")
-    @JoinColumn(name = "product_id_fk")
+    /*@MapsId("product_id_fk")*/
+    @JoinColumn(name = "product_id_fk", referencedColumnName = "product_id", insertable = false, updatable = false)
     Product product;
 
 
@@ -48,4 +48,66 @@ public class OrderProduct {
     @Column(name = "product_summ")
     private Double productSumm;
 
+    @Column(name = "product_size")
+    private String productSize;
+
+    public OrderProductKey getId() {
+        return id;
+    }
+
+    public void setId(OrderProductKey id) {
+        this.id = id;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public int getProductQuantity() {
+        return productQuantity;
+    }
+
+    public void setProductQuantity(int productQuantity) {
+        this.productQuantity = productQuantity;
+    }
+
+    public Double getProductSumm() {
+        return productSumm;
+    }
+
+    public void setProductSumm(Double productSumm) {
+        this.productSumm = productSumm;
+    }
+
+    public String getProductSize() {
+        return productSize;
+    }
+
+    public void setProductSize(String productSize) {
+        this.productSize = productSize;
+    }
+
+    @Override
+    public String toString() {
+        return "OrderProduct{" +
+                "id=" + id +
+                ", order=" + order +
+                ", product=" + product +
+                ", productQuantity=" + productQuantity +
+                ", productSumm=" + productSumm +
+                ", productSize='" + productSize + '\'' +
+                '}';
+    }
 }

@@ -23,6 +23,23 @@ public class OrderProductKey  implements Serializable {
     @Column(name = "product_id_fk")
     private long productIdFk;
 
+
+    public long getOrderIdFk() {
+        return orderIdFk;
+    }
+
+    public void setOrderIdFk(long orderIdFk) {
+        this.orderIdFk = orderIdFk;
+    }
+
+    public long getProductIdFk() {
+        return productIdFk;
+    }
+
+    public void setProductIdFk(long productIdFk) {
+        this.productIdFk = productIdFk;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -35,5 +52,13 @@ public class OrderProductKey  implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(orderIdFk, productIdFk);
+    }
+
+    @Override
+    public String toString() {
+        return "OrderProductKey{" +
+                "orderIdFk=" + orderIdFk +
+                ", productIdFk=" + productIdFk +
+                '}';
     }
 }

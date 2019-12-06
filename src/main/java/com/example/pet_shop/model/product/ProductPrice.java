@@ -1,3 +1,4 @@
+/*
 package com.example.pet_shop.model.product;
 
 
@@ -31,3 +32,4 @@ public class ProductPrice {
     List<ProductSize> productSizes;
 
 }
+*/
