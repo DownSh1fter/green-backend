@@ -1,14 +1,8 @@
 package com.example.pet_shop.controller.product;
 
 
-import com.example.pet_shop.model.product.Product;
-import com.example.pet_shop.model.product.ProductCategory;
-import com.example.pet_shop.model.product.ProductSubcategory;
-import com.example.pet_shop.model.product.ProductType;
-import com.example.pet_shop.repository.product.ProductCategoryRepo;
-import com.example.pet_shop.repository.product.ProductRepo;
-import com.example.pet_shop.repository.product.ProductSubcategoryRepo;
-import com.example.pet_shop.repository.product.ProductTypeRepo;
+import com.example.pet_shop.model.product.*;
+import com.example.pet_shop.repository.product.*;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -38,6 +32,9 @@ public class ProductController {
 
     @Autowired
     ProductSubcategoryRepo productSubcategoryRepo;
+
+    @Autowired
+    ProductMakerRepo productMakerRepo;
 
     @GetMapping(value = "/", produces = { MediaType.APPLICATION_JSON_VALUE})
     public List<Product> getAllProducts(){
@@ -102,5 +99,10 @@ public class ProductController {
         IOUtils.copy(in, response.getOutputStream());
     }
 
+
+    @RequestMapping(value = "/makers")
+    public List<ProductMaker> getAllProductMakers(){
+        return productMakerRepo.findAll();
+    }
 
 }
