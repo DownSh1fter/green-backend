@@ -47,6 +47,14 @@ public class Product {
     @JoinColumn(name = "product_subcategory_id_fk")
     private ProductSubcategory productSubcategory;
 
+    @ManyToOne
+    @JoinColumn(name = "product_category_id_fk")
+    private ProductCategory productCategory;
+
+    @ManyToOne
+    @JoinColumn(name = "product_type_id_fk")
+    private ProductType productType;
+
  /*   @Column(name = "product_type_id")
     private String productTypeName;
 
@@ -72,6 +80,9 @@ public class Product {
  /*  @JsonIgnore
    @ManyToMany(mappedBy = "products")
     List<Order> orders;*/
+
+
+
 
     @Transient
     private String productSize;

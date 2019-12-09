@@ -31,4 +31,41 @@ public class ProductType {
     @JsonIgnore
     @ManyToMany(mappedBy = "productTypes")
     List<ProductCategory> productCategories;
+
+    @OneToMany(mappedBy = "productType")
+    @JsonIgnore
+    private List<Product> products;
+
+
+    public Long getProductTypeId() {
+        return productTypeId;
+    }
+
+    public void setProductTypeId(Long productTypeId) {
+        this.productTypeId = productTypeId;
+    }
+
+    public String getProductTypeName() {
+        return productTypeName;
+    }
+
+    public void setProductTypeName(String productTypeName) {
+        this.productTypeName = productTypeName;
+    }
+
+    public String getProductTypeEngName() {
+        return productTypeEngName;
+    }
+
+    public void setProductTypeEngName(String productTypeEngName) {
+        this.productTypeEngName = productTypeEngName;
+    }
+
+    public List<ProductCategory> getProductCategories() {
+        return productCategories;
+    }
+
+    public void setProductCategories(List<ProductCategory> productCategories) {
+        this.productCategories = productCategories;
+    }
 }

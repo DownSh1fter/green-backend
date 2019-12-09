@@ -36,4 +36,43 @@ public class ProductSubcategory {
     inverseJoinColumns = @JoinColumn(name = "product_category_id_fk"))
     List<ProductCategory> productCategories;
 
+    public Long getProductSubcategoryId() {
+        return productSubcategoryId;
+    }
+
+    public void setProductSubcategoryId(Long productSubcategoryId) {
+        this.productSubcategoryId = productSubcategoryId;
+    }
+
+    public String getProductSubcategoryName() {
+        return productSubcategoryName;
+    }
+
+    public void setProductSubcategoryName(String productSubcategoryName) {
+        this.productSubcategoryName = productSubcategoryName;
+    }
+
+    public String getProductSubcategoryEngName() {
+        return productSubcategoryEngName;
+    }
+
+    public void setProductSubcategoryEngName(String productSubcategoryEngName) {
+        this.productSubcategoryEngName = productSubcategoryEngName;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
+    public List<ProductCategory> getProductCategories() {
+        return productCategories;
+    }
+
+    public void setProductCategories(List<ProductCategory> productCategories) {
+        this.productCategories = productCategories;
+    }
 }

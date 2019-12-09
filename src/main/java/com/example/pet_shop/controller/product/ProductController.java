@@ -56,7 +56,7 @@ public class ProductController {
     //TO-DO .....
     @GetMapping(value = "/catalog/product/{type}", produces = {MediaType.APPLICATION_JSON_VALUE})
     public List<Product> getProductsByType(@PathVariable String type){
-        return productRepo.findByProductSubcategoryProductCategoriesProductTypesProductTypeEngName(type);
+        return productRepo.findByProductType_ProductTypeEngName(type);
     }
 
     //Working
@@ -70,13 +70,13 @@ public class ProductController {
    //TO-DO ....
     @GetMapping(value = "/catalog/product/{type}/{category}", produces = {MediaType.APPLICATION_JSON_VALUE})
     public List<Product> getSubcategoryByTypeAndCategory(@PathVariable String category, @PathVariable String type){
-        return productRepo.findByProductSubcategory_ProductCategories_ProductTypesProductTypeEngName_AndProductSubcategoryProductCategoriesProductCategoryEngName(type, category);
+        return productRepo.findByProductType_ProductTypeEngNameAndProductCategory_ProductCategoryEngName(type, category);
 
     }
 
     @GetMapping(value = "/catalog/product/{type}/{category}/{subCategory}", produces = {MediaType.APPLICATION_JSON_VALUE})
     public List<Product> getProductsBySubcategoryName(@PathVariable String subCategory, @PathVariable String type, @PathVariable String category){
-        return productRepo.findByProductSubcategory_ProductCategories_ProductTypesProductTypeEngName_AndProductSubcategoryProductCategoriesProductCategoryEngName_AndProductSubcategoryProductSubcategoryEngName(type, category, subCategory);
+        return productRepo.findByProductType_ProductTypeEngNameAndProductCategory_ProductCategoryEngNameAndProductSubcategory_ProductSubcategoryEngName(type, category, subCategory);
     }
 
     /*@GetMapping(value = "/catalog/{type}/{category}/{subCategory}", produces = {MediaType.APPLICATION_JSON_VALUE})
@@ -103,6 +103,17 @@ public class ProductController {
     @RequestMapping(value = "/makers")
     public List<ProductMaker> getAllProductMakers(){
         return productMakerRepo.findAll();
+    }
+
+
+    @RequestMapping(value = "/categories")
+    public List<ProductCategory> getAllCategories(){
+        return productCategoryRepo.findAll();
+    }
+
+    @RequestMapping(value = "/subCategories")
+    public List<ProductSubcategory> getAllSubCategories(){
+        return productSubcategoryRepo.findAll();
     }
 
 }

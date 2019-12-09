@@ -19,10 +19,13 @@ public interface ProductRepo extends JpaRepository<Product, Long> {
 
 
    // List<Product> findByProductSubcategory_ProductCategories_ProductCategoryEngName_And_ProductTypes_ProductTypeEngName(String category, String type);
-   List<Product> findByProductSubcategoryProductCategoriesProductTypesProductTypeEngName(String type);
+  /* List<Product> findByProductSubcategoryProductCategoriesProductTypesProductTypeEngName(String type);
    List<Product> findByProductSubcategory_ProductCategories_ProductTypesProductTypeEngName_AndProductSubcategoryProductCategoriesProductCategoryEngName(String type, String category);
-    List<Product> findByProductSubcategory_ProductCategories_ProductTypesProductTypeEngName_AndProductSubcategoryProductCategoriesProductCategoryEngName_AndProductSubcategoryProductSubcategoryEngName(String type, String category, String subCategory);
+    List<Product> findByProductSubcategory_ProductCategories_ProductTypesProductTypeEngName_AndProductSubcategoryProductCategoriesProductCategoryEngName_AndProductSubcategoryProductSubcategoryEngName(String type, String category, String subCategory);*/
 
+    List<Product> findByProductType_ProductTypeEngName(String type);
+    List<Product> findByProductType_ProductTypeEngNameAndProductCategory_ProductCategoryEngName(String type, String category);
+  List<Product> findByProductType_ProductTypeEngNameAndProductCategory_ProductCategoryEngNameAndProductSubcategory_ProductSubcategoryEngName(String type, String category, String subCategory);
 
 
     List<Product> findByOrderProducts_Order_OrderId(Long id);
