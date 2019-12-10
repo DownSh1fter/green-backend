@@ -95,5 +95,10 @@ public class OrderController {
          return productRepo.findByOrderProducts_Order_OrderId(id);
     }
 
+
+    @DeleteMapping(value = "/admin/orders/{id}")
+        public void deleteOrder(@PathVariable long id){
+            orderRepo.deleteById(id);
+    }
 }
 

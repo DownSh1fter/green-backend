@@ -31,10 +31,15 @@ public class ProductSubcategory {
     @JsonIgnore
      private List<Product> products;
 
-    @ManyToMany
+    @ManyToOne
+    @JoinColumn(name = "product_category_id_fk")
+    private ProductCategory productCategoryS;
+
+    //deprecated mb)
+    /*@ManyToMany
     @JoinTable(name = "product_category_subcategory", joinColumns = { @JoinColumn(name = "product_subcategory_id_fk")},
     inverseJoinColumns = @JoinColumn(name = "product_category_id_fk"))
-    List<ProductCategory> productCategories;
+    List<ProductCategory> productCategories;*/
 
     public Long getProductSubcategoryId() {
         return productSubcategoryId;
@@ -68,11 +73,19 @@ public class ProductSubcategory {
         this.products = products;
     }
 
-    public List<ProductCategory> getProductCategories() {
+  /*  public List<ProductCategory> getProductCategories() {
         return productCategories;
     }
 
     public void setProductCategories(List<ProductCategory> productCategories) {
         this.productCategories = productCategories;
+    }*/
+
+    public ProductCategory getProductCategoryS() {
+        return productCategoryS;
+    }
+
+    public void setProductCategoryS(ProductCategory productCategoryS) {
+        this.productCategoryS = productCategoryS;
     }
 }

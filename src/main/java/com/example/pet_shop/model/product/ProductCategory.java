@@ -33,17 +33,24 @@ public class ProductCategory {
     @JsonIgnore
     private List<Product> products;
 
-    @JsonIgnore
+   /* @JsonIgnore
     @ManyToMany(mappedBy = "productCategories")
+    List<ProductSubcategory> productSubcategories;*/
+
+   @JsonIgnore
+    @OneToMany(mappedBy = "productCategoryS")
     List<ProductSubcategory> productSubcategories;
 
 
+    @ManyToOne
+    @JoinColumn(name = "product_type_id_fk")
+    ProductType productTypeC;
 
 
-    @ManyToMany
+    /*@ManyToMany
     @JoinTable(name = "product_type_category", joinColumns = {@JoinColumn(name = "product_category_id_fk")},
     inverseJoinColumns = @JoinColumn(name = "product_type_id_fk"))
-    List<ProductType> productTypes;
+    List<ProductType> productTypes;*/
 
     public Long getProductCategoryId() {
         return productCategoryId;
@@ -77,11 +84,28 @@ public class ProductCategory {
         this.productSubcategories = productSubcategories;
     }
 
-    public List<ProductType> getProductTypes() {
+   /* public List<ProductType> getProductTypes() {
         return productTypes;
     }
 
     public void setProductTypes(List<ProductType> productTypes) {
         this.productTypes = productTypes;
+
+          }*/
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
+    public ProductType getProductTypeC() {
+        return productTypeC;
+    }
+
+    public void setProductTypeC(ProductType productTypeC) {
+        this.productTypeC = productTypeC;
     }
 }

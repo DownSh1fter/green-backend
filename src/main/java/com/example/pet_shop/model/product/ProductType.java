@@ -28,13 +28,17 @@ public class ProductType {
     @Column(name = "product_type_eng_name")
     private String productTypeEngName;
 
-    @JsonIgnore
+    /*@JsonIgnore
     @ManyToMany(mappedBy = "productTypes")
-    List<ProductCategory> productCategories;
+    List<ProductCategory> productCategories;*/
 
     @OneToMany(mappedBy = "productType")
     @JsonIgnore
     private List<Product> products;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "productTypeC")
+    private List<ProductCategory> productCategories;
 
 
     public Long getProductTypeId() {
@@ -68,4 +72,13 @@ public class ProductType {
     public void setProductCategories(List<ProductCategory> productCategories) {
         this.productCategories = productCategories;
     }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
 }

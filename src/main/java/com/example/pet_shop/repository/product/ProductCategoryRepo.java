@@ -22,6 +22,6 @@ public interface ProductCategoryRepo extends JpaRepository<ProductCategory, Long
 /*   @Query("select productName from ProductCategory pc where pc.productTypes.productTypeName = :productType")
    List<ProductCategory> findAllByProductTypes(@Param("productType") String productType);*/
     //@Query("select pc from ProductCategory where pc.productTypes.productTypeName = :type")
-    List<ProductCategory> findByProductTypes_productTypeEngName( String type);
+    List<ProductCategory> findByProductTypeC_ProductTypeEngName( String type);
     //
 }

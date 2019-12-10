@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ProductSubcategoryRepo extends JpaRepository<ProductSubcategory, Long> {
 
-    List<ProductSubcategory> findAllByProductCategories_productCategoryEngName(String category);
+    List<ProductSubcategory> findAllByProductCategoryS_ProductCategoryEngName(String category);
     //
 
 }

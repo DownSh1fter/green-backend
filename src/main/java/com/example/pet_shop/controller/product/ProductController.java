@@ -50,7 +50,7 @@ public class ProductController {
     //working
     @GetMapping(value = "/catalog/{type}", produces = {MediaType.APPLICATION_JSON_VALUE})
     public List<ProductCategory> getCategoriesByType(@PathVariable String type){
-        return productCategoryRepo.findByProductTypes_productTypeEngName(type);
+        return productCategoryRepo.findByProductTypeC_ProductTypeEngName(type);
     }
 
     //TO-DO .....
@@ -62,7 +62,7 @@ public class ProductController {
     //Working
     @GetMapping(value = "/catalog/{type}/{category}", produces = {MediaType.APPLICATION_JSON_VALUE})
     public List<ProductSubcategory> getSubcategoryByTypeAndCategory(@PathVariable String category){
-        return productSubcategoryRepo.findAllByProductCategories_productCategoryEngName(category);
+        return productSubcategoryRepo.findAllByProductCategoryS_ProductCategoryEngName(category);
 
     }
 

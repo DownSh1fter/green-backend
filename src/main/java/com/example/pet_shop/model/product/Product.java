@@ -43,14 +43,17 @@ public class Product {
     @JoinColumn(name = "product_maker_id_fk")
     private ProductMaker productMaker;
 
+    /*@JsonIgnore*/
     @ManyToOne
     @JoinColumn(name = "product_subcategory_id_fk")
     private ProductSubcategory productSubcategory;
 
+    /*@JsonIgnore*/
     @ManyToOne
     @JoinColumn(name = "product_category_id_fk")
     private ProductCategory productCategory;
 
+    /*@JsonIgnore*/
     @ManyToOne
     @JoinColumn(name = "product_type_id_fk")
     private ProductType productType;
