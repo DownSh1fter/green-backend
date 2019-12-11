@@ -43,9 +43,9 @@ public class OrderController {
 
 
     @PostMapping(value = "/admin/orders")
-    public void createOrder(){
+    public void createOrder(@RequestBody OrderProduct orderProd){
         Order order = new Order();
-
+        double summ = 0;
         OrderProductKey productKey = new OrderProductKey();
 
         List<OrderProduct> orderProducts = new ArrayList<>();
@@ -63,13 +63,14 @@ public class OrderController {
             OrderProduct orderProduct = new OrderProduct();
 
             productKey.setProductIdFk(p.getProductId());
-
+            System.out.println("------------------");
+            System.out.println(orderProd.toString());
             orderProduct.setOrder(order);
             orderProduct.setId(productKey);
             orderProduct.setProduct(p);
-            orderProduct.setProductQuantity(100);
+            orderProduct.setProductQuantity(orderProd.getProductQuantity());
             orderProduct.setProductSize(p.getProductSize());
-            orderProduct.setProductSumm(2000.00);
+            orderProduct.setProductSumm(p.getProductPrice());
 
 
             orderProducts.add(orderProduct);
@@ -80,10 +81,12 @@ public class OrderController {
 
 
             order.setOrderProducts(orderProducts);
+            summ+=p.getProductPrice()*orderProduct.getProductQuantity();
 
-            orderRepo.save(order);
         }
-
+        order.setOrderSumm(summ);
+        orderRepo.save(order);
+        products.clear();
 
 
 

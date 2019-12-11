@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -33,12 +35,14 @@ public class OrderProduct {
       @ManyToOne
       /*@MapsId("order_id_fk")*/
       @JoinColumn(name = "order_id_fk", referencedColumnName = "order_id", insertable = false, updatable = false)
+        @OnDelete(action = OnDeleteAction.CASCADE)
       Order order;
 
       //  @JsonIgnore
     @ManyToOne
     /*@MapsId("product_id_fk")*/
     @JoinColumn(name = "product_id_fk", referencedColumnName = "product_id", insertable = false, updatable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     Product product;
 
 
