@@ -43,8 +43,8 @@ public class OrderController {
 
 
     @PostMapping(value = "/admin/orders")
-    public void createOrder(@RequestBody OrderProduct orderProd){
-        Order order = new Order();
+    public void createOrder(@RequestBody OrderProduct orderProd, Order order){
+     //   Order order = new Order();
         double summ = 0;
         OrderProductKey productKey = new OrderProductKey();
 
