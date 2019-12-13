@@ -1,5 +1,6 @@
 package com.example.pet_shop.model.order;
 
+import com.example.pet_shop.model.client.unregister.UnregisterClient;
 import com.example.pet_shop.model.product.Product;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
@@ -41,6 +42,11 @@ public class Order {
     inverseJoinColumns = @JoinColumn(name = "product_id_fk"))
     List<Product> products;*/
 
+
+   @ManyToOne
+   @JoinColumn(name = "unregister_client_id_fk")
+    UnregisterClient unregisterClient;
+
     public long getOrderId() {
         return orderId;
     }
@@ -79,5 +85,13 @@ public class Order {
 
     public void setOrderProducts(List<OrderProduct> orderProducts) {
         this.orderProducts = orderProducts;
+    }
+
+    public UnregisterClient getUnregisterClient() {
+        return unregisterClient;
+    }
+
+    public void setUnregisterClient(UnregisterClient unregisterClient) {
+        this.unregisterClient = unregisterClient;
     }
 }

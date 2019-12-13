@@ -1,10 +1,12 @@
 package com.example.pet_shop.controller.order;
 
 
+import com.example.pet_shop.model.client.unregister.UnregisterClient;
 import com.example.pet_shop.model.order.Order;
 import com.example.pet_shop.model.order.OrderProduct;
 import com.example.pet_shop.model.order.OrderProductKey;
 import com.example.pet_shop.model.product.Product;
+import com.example.pet_shop.repository.client.UnregisterClientRepo;
 import com.example.pet_shop.repository.order.OrderProductRepo;
 import com.example.pet_shop.repository.order.OrderRepo;
 import com.example.pet_shop.repository.product.ProductRepo;
@@ -35,6 +37,10 @@ public class OrderController {
     OrderProductRepo orderProductRepo;
 
 
+    @Autowired
+    UnregisterClientRepo unregisterClientRepo;
+
+
     @GetMapping(value = "/admin/orders")
     public List<Order> getAllOrders(){
         return orderRepo.findAll();
@@ -43,18 +49,23 @@ public class OrderController {
 
 
     @PostMapping(value = "/admin/orders")
-    public void createOrder(@RequestBody OrderProduct orderProd, Order order){
+    public void createOrder(@RequestBody /*OrderProduct orderProd, */Order order){
      //   Order order = new Order();
         double summ = 0;
         OrderProductKey productKey = new OrderProductKey();
-
+        UnregisterClient unregisterClient = order.getUnregisterClient();
         List<OrderProduct> orderProducts = new ArrayList<>();
         List<Product> products = cartService.getCartList();
 
         order.setOrderSumm(1000.00);
-        order.setOrderDeliveryType("dsfsdf");
-        order.setOrderDescription("dfdsfsdf");
+        order.setOrderDeliveryType(order.getOrderDeliveryType());
+        order.setOrderDescription(order.getOrderDescription());
+
+        unregisterClientRepo.save(unregisterClient);
+        order.setUnregisterClient(unregisterClient);
         orderRepo.save(order);
+
+
 
 
         productKey.setOrderIdFk(order.getOrderId());
@@ -64,11 +75,11 @@ public class OrderController {
 
             productKey.setProductIdFk(p.getProductId());
             System.out.println("------------------");
-            System.out.println(orderProd.toString());
+           // System.out.println(orderProd.toString());
             orderProduct.setOrder(order);
             orderProduct.setId(productKey);
             orderProduct.setProduct(p);
-            orderProduct.setProductQuantity(orderProd.getProductQuantity());
+            orderProduct.setProductQuantity(2/*orderProd.getProductQuantity()*/);
             orderProduct.setProductSize(p.getProductSize());
             orderProduct.setProductSumm(p.getProductPrice());
 
