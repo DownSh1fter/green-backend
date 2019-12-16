@@ -1,7 +1,10 @@
 package com.example.pet_shop.model.client.unregister;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "unregister_client_address")
@@ -25,7 +28,11 @@ public class ClientAddress {
     private String addressHome;
 
     @Column(name = "client_address_flat_number")
-    private String addressFlat;
+    private int addressFlat;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "clientAddress")
+    private List<UnregisterClient> unregisterClients;
 
     public ClientAddress() {
     }
@@ -70,11 +77,19 @@ public class ClientAddress {
         this.addressHome = addressHome;
     }
 
-    public String getAddressFlat() {
+    public int getAddressFlat() {
         return addressFlat;
     }
 
-    public void setAddressFlat(String addressFlat) {
+    public void setAddressFlat(int addressFlat) {
         this.addressFlat = addressFlat;
+    }
+
+    public List<UnregisterClient> getUnregisterClients() {
+        return unregisterClients;
+    }
+
+    public void setUnregisterClients(List<UnregisterClient> unregisterClients) {
+        this.unregisterClients = unregisterClients;
     }
 }

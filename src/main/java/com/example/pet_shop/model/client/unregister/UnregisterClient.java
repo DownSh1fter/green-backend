@@ -30,6 +30,11 @@ public class UnregisterClient {
     @OneToMany(mappedBy = "unregisterClient")
     List<Order> orderList;
 
+
+    @ManyToOne
+    @JoinColumn(name = "client_address_id_fk")
+    ClientAddress clientAddress;
+
     public UnregisterClient() {
     }
 
@@ -71,5 +76,13 @@ public class UnregisterClient {
 
     public void setOrderList(List<Order> orderList) {
         this.orderList = orderList;
+    }
+
+    public ClientAddress getClientAddress() {
+        return clientAddress;
+    }
+
+    public void setClientAddress(ClientAddress clientAddress) {
+        this.clientAddress = clientAddress;
     }
 }

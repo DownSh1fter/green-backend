@@ -1,11 +1,13 @@
 package com.example.pet_shop.controller.order;
 
 
+import com.example.pet_shop.model.client.unregister.ClientAddress;
 import com.example.pet_shop.model.client.unregister.UnregisterClient;
 import com.example.pet_shop.model.order.Order;
 import com.example.pet_shop.model.order.OrderProduct;
 import com.example.pet_shop.model.order.OrderProductKey;
 import com.example.pet_shop.model.product.Product;
+import com.example.pet_shop.repository.client.UnregisterClientAddressRepo;
 import com.example.pet_shop.repository.client.UnregisterClientRepo;
 import com.example.pet_shop.repository.order.OrderProductRepo;
 import com.example.pet_shop.repository.order.OrderRepo;
@@ -40,6 +42,8 @@ public class OrderController {
     @Autowired
     UnregisterClientRepo unregisterClientRepo;
 
+    @Autowired
+    UnregisterClientAddressRepo unregisterClientAddressRepo;
 
     @GetMapping(value = "/admin/orders")
     public List<Order> getAllOrders(){
@@ -54,6 +58,7 @@ public class OrderController {
         double summ = 0;
         OrderProductKey productKey = new OrderProductKey();
         UnregisterClient unregisterClient = order.getUnregisterClient();
+        ClientAddress unregisterClientAddress = unregisterClient.getClientAddress();
         List<OrderProduct> orderProducts = new ArrayList<>();
         List<Product> products = cartService.getCartList();
 
@@ -61,6 +66,7 @@ public class OrderController {
         order.setOrderDeliveryType(order.getOrderDeliveryType());
         order.setOrderDescription(order.getOrderDescription());
 
+        unregisterClientAddressRepo.save(unregisterClientAddress);
         unregisterClientRepo.save(unregisterClient);
         order.setUnregisterClient(unregisterClient);
         orderRepo.save(order);
