@@ -6,6 +6,7 @@ import com.example.pet_shop.model.client.unregister.UnregisterClient;
 import com.example.pet_shop.model.order.Order;
 import com.example.pet_shop.model.order.OrderProduct;
 import com.example.pet_shop.model.order.OrderProductKey;
+import com.example.pet_shop.model.order.OrderWrapper.OrderWrapper;
 import com.example.pet_shop.model.product.Product;
 import com.example.pet_shop.repository.client.UnregisterClientAddressRepo;
 import com.example.pet_shop.repository.client.UnregisterClientRepo;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
@@ -53,10 +55,66 @@ public class OrderController {
 
 
     @PostMapping(value = "/admin/orders")
-    public void createOrder(@RequestBody /*OrderProduct orderProd, */Order order){
-     //   Order order = new Order();
+    public void createOrder(@RequestBody OrderWrapper orderWrapper){
+        // work
+        /*double summ = 0;
+        OrderProductKey productKey = new OrderProductKey();
+        Order order = orderWrapper.getOrder();
+
+        UnregisterClient unregisterClient = order.getUnregisterClient();
+        ClientAddress unregisterClientAddress = unregisterClient.getClientAddress();
+        List<OrderProduct> orderProducts = new ArrayList<>();
+        List<Product> products = cartService.getCartList();
+
+        order.setOrderSumm(1000.00);
+        order.setOrderDeliveryType(order.getOrderDeliveryType());
+        order.setOrderDescription(order.getOrderDescription());
+
+        unregisterClientAddressRepo.save(unregisterClientAddress);
+        unregisterClientRepo.save(unregisterClient);
+        order.setUnregisterClient(unregisterClient);
+        orderRepo.save(order);
+
+
+
+
+        productKey.setOrderIdFk(order.getOrderId());
+
+        for (Product p: products) {
+            OrderProduct orderProduct = orderWrapper.getOrderProduct();
+
+            productKey.setProductIdFk(p.getProductId());
+            System.out.println("------------------");
+            orderProduct.setOrder(order);
+            orderProduct.setId(productKey);
+            orderProduct.setProduct(p);
+            orderProduct.setProductQuantity(orderProduct.getProductQuantity());
+            orderProduct.setProductSize(p.getProductSize());
+            orderProduct.setProductSumm(p.getProductPrice());
+
+
+            orderProducts.add(orderProduct);
+            orderProductRepo.saveAll(orderProducts);
+
+
+            System.out.println(orderProducts.toString());
+
+
+            order.setOrderProducts(orderProducts);
+            summ+=p.getProductPrice()*orderProduct.getProductQuantity();
+
+        }
+        order.setOrderSumm(summ);
+        orderRepo.save(order);
+        products.clear();
+*/
+
+
         double summ = 0;
         OrderProductKey productKey = new OrderProductKey();
+        Order order = orderWrapper.getOrder();
+
+
         UnregisterClient unregisterClient = order.getUnregisterClient();
         ClientAddress unregisterClientAddress = unregisterClient.getClientAddress();
         List<OrderProduct> orderProducts = new ArrayList<>();
@@ -79,13 +137,20 @@ public class OrderController {
         for (Product p: products) {
             OrderProduct orderProduct = new OrderProduct();
 
+
+            Map<Long, Integer> map = orderWrapper.getMap();
+            for (Map.Entry<Long, Integer> m: map.entrySet()) {
+                System.out.println("-------------------");
+                System.out.println(m.getKey() + " " + m.getValue());
+            }
+
             productKey.setProductIdFk(p.getProductId());
             System.out.println("------------------");
-           // System.out.println(orderProd.toString());
             orderProduct.setOrder(order);
             orderProduct.setId(productKey);
             orderProduct.setProduct(p);
-            orderProduct.setProductQuantity(2/*orderProd.getProductQuantity()*/);
+
+            orderProduct.setProductQuantity(map.get(p.getProductId()));
             orderProduct.setProductSize(p.getProductSize());
             orderProduct.setProductSumm(p.getProductPrice());
 
@@ -104,7 +169,6 @@ public class OrderController {
         order.setOrderSumm(summ);
         orderRepo.save(order);
         products.clear();
-
 
 
     }
