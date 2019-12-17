@@ -82,7 +82,7 @@ public class ProductController {
     /*@GetMapping(value = "/catalog/{type}/{category}/{subCategory}", produces = {MediaType.APPLICATION_JSON_VALUE})
     public List<ProductSubcategory> getSubcategoryByTypeAndCategory(@PathVariable String subCategory){
         return productSubcategoryRepo.findAllByProductCategories_productCategoryEngName(category);
-
+//
     }*/
 
 
