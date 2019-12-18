@@ -3,14 +3,17 @@ package com.example.pet_shop.model.order.OrderWrapper;
 
 import com.example.pet_shop.model.order.Order;
 import com.example.pet_shop.model.order.OrderProduct;
+import com.fasterxml.jackson.databind.util.JSONPObject;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class OrderWrapper {
 
     private Order order;
    /* private OrderProduct orderProduct;*/
-    private Map<Long, Integer> map;
+    private LinkedHashMap<Long, Integer> map;
+
 
     public OrderWrapper() {
     }
@@ -31,11 +34,11 @@ public class OrderWrapper {
         this.orderProduct = orderProduct;
     }*/
 
-    public Map<Long, Integer> getMap() {
+    public LinkedHashMap<Long, Integer> getMap() {
         return map;
     }
 
-    public void setMap(Map<Long, Integer> map) {
+    public void setMap(LinkedHashMap<Long, Integer> map) {
         this.map = map;
     }
 }

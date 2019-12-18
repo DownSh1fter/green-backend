@@ -17,9 +17,8 @@ import com.example.pet_shop.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import javax.persistence.criteria.CriteriaBuilder;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @RestController
@@ -130,20 +129,15 @@ public class OrderController {
         orderRepo.save(order);
 
 
+        LinkedHashMap<Long, Integer> map = orderWrapper.getMap();
 
+        map.forEach((i,j) -> System.out.println("**************** " + i + " " + j));
+        System.out.println(map.size());
 
         productKey.setOrderIdFk(order.getOrderId());
 
-        for (Product p: products) {
+           for (Product p: products) {
             OrderProduct orderProduct = new OrderProduct();
-
-
-            Map<Long, Integer> map = orderWrapper.getMap();
-            for (Map.Entry<Long, Integer> m: map.entrySet()) {
-                System.out.println("-------------------");
-                System.out.println(m.getKey() + " " + m.getValue());
-            }
-
             productKey.setProductIdFk(p.getProductId());
             System.out.println("------------------");
             orderProduct.setOrder(order);

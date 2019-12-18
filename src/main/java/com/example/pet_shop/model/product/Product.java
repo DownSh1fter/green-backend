@@ -191,6 +191,32 @@ public class Product {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return productId == product.productId &&
+                Objects.equals(productName, product.productName) &&
+                Objects.equals(productEngName, product.productEngName) &&
+                Objects.equals(productDescription, product.productDescription) &&
+                Objects.equals(productStructure, product.productStructure) &&
+                Objects.equals(productImage, product.productImage) &&
+                Objects.equals(productMaker, product.productMaker) &&
+                Objects.equals(productSubcategory, product.productSubcategory) &&
+                Objects.equals(productCategory, product.productCategory) &&
+                Objects.equals(productType, product.productType) &&
+                Objects.equals(productSizes, product.productSizes) &&
+                Objects.equals(orderProducts, product.orderProducts) &&
+                Objects.equals(productSize, product.productSize) &&
+                Objects.equals(productPrice, product.productPrice);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(productId, productName, productEngName, productDescription, productStructure, productImage, productMaker, productSubcategory, productCategory, productType, productSizes, orderProducts, productSize, productPrice);
+    }
+
+    @Override
     public String toString() {
         return "Product{" +
                 "productId=" + productId +
