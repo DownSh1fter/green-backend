@@ -36,6 +36,7 @@ public class ProductController {
     @Autowired
     ProductMakerRepo productMakerRepo;
 
+
     @GetMapping(value = "/", produces = { MediaType.APPLICATION_JSON_VALUE})
     public List<Product> getAllProducts(){
         return productRepo.findAll();

@@ -15,6 +15,7 @@ import com.example.pet_shop.repository.order.OrderRepo;
 import com.example.pet_shop.repository.product.ProductRepo;
 import com.example.pet_shop.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -46,6 +47,7 @@ public class OrderController {
     @Autowired
     UnregisterClientAddressRepo unregisterClientAddressRepo;
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping(value = "/admin/orders")
     public List<Order> getAllOrders(){
         return orderRepo.findAll();
