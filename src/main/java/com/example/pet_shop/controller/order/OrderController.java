@@ -54,7 +54,7 @@ public class OrderController {
     }
 
 
-
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping(value = "/admin/orders")
     public void createOrder(@RequestBody OrderWrapper orderWrapper){
         // work
@@ -121,7 +121,7 @@ public class OrderController {
         List<OrderProduct> orderProducts = new ArrayList<>();
         List<Product> products = cartService.getCartList();
 
-        order.setOrderSumm(1000.00);
+
         order.setOrderDeliveryType(order.getOrderDeliveryType());
         order.setOrderDescription(order.getOrderDescription());
 
@@ -169,13 +169,13 @@ public class OrderController {
 
     }
 
-
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping(value = "/admin/orders/{id}")
     public List<Product> getProductsByOrderId(@PathVariable Long id){
          return productRepo.findByOrderProducts_Order_OrderId(id);
     }
 
-
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping(value = "/admin/orders/{id}")
         public void deleteOrder(@PathVariable long id){
             orderRepo.deleteById(id);

@@ -7,6 +7,7 @@ import com.example.pet_shop.model.product.ProductMaker;
 import com.example.pet_shop.model.product.ProductType;
 import com.example.pet_shop.repository.product.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -29,7 +30,7 @@ public class AdminController {
     @Autowired
     ProductSubcategoryRepo productSubcategoryRepo;
 
-
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping(value = "/admin/add")
     public void addProduct(@RequestBody Product product){
        /* ProductMaker productMaker = productMakerRepo.getOne((long) 2);

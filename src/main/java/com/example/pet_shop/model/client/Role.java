@@ -2,6 +2,7 @@ package com.example.pet_shop.model.client;
 
 
 import com.example.pet_shop.model.client.register.RegisterClient;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.List;
@@ -25,7 +26,7 @@ public class Role {
     public Role() {
     }
 
-
+    @JsonIgnore
     @ManyToMany(mappedBy = "roles")
     Set<RegisterClient> clients;
 
