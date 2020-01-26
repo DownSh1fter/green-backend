@@ -46,6 +46,7 @@ public class Role {
         this.roleName = roleName;
     }
 
+
     public String getRoleStatus() {
         return roleStatus;
     }
