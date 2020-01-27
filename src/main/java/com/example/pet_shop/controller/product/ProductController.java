@@ -117,4 +117,10 @@ public class ProductController {
         return productSubcategoryRepo.findAll();
     }
 
+
+    @RequestMapping(value = "/product/{id}")
+    public Product getProductById(@PathVariable("id") Long id){
+        return productRepo.getOne(id);
+    }
+
 }
