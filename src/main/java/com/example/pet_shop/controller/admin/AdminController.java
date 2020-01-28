@@ -30,7 +30,7 @@ public class AdminController {
     @Autowired
     ProductSubcategoryRepo productSubcategoryRepo;
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+   /* @PreAuthorize("hasRole('ROLE_ADMIN')")*/
     @PostMapping(value = "/admin/add")
     public void addProduct(@RequestBody Product product){
        /* ProductMaker productMaker = productMakerRepo.getOne((long) 2);

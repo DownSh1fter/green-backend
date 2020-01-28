@@ -5,14 +5,20 @@ import com.example.pet_shop.model.product.*;
 import com.example.pet_shop.repository.product.*;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 
 
@@ -123,4 +129,12 @@ public class ProductController {
         return productRepo.getOne(id);
     }
 
+
+    @RequestMapping(value = "/image/add")
+    @ResponseStatus(HttpStatus.OK)
+    public void addImage(@PathVariable("file")MultipartFile file) throws IOException {
+        Path filePath = Paths.get("D://pet_shop/images/" + file.getOriginalFilename());
+
+        Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+    }
 }

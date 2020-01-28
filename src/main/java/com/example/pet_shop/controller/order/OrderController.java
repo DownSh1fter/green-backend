@@ -54,7 +54,6 @@ public class OrderController {
     }
 
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping(value = "/admin/orders")
     public void createOrder(@RequestBody OrderWrapper orderWrapper){
         // work
@@ -121,7 +120,7 @@ public class OrderController {
         List<OrderProduct> orderProducts = new ArrayList<>();
         List<Product> products = cartService.getCartList();
 
-
+        order.setOrderSumm(summ);
         order.setOrderDeliveryType(order.getOrderDeliveryType());
         order.setOrderDescription(order.getOrderDescription());
 
