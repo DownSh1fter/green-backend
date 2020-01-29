@@ -27,5 +27,4 @@ public interface RegisterClientRepo extends JpaRepository<RegisterClient, Long>{
     Boolean existsByUserName(String username);
 
     Boolean existsByEmail(String email);
-
 }

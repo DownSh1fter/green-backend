@@ -61,8 +61,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors().and().csrf().disable()
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                .authorizeRequests().antMatchers("/petshop.by/auth/**","/petshop.by/admin/**").permitAll()
-                .antMatchers("/petshop.by/**").permitAll()
+                .authorizeRequests().antMatchers("/petshop.by/auth/**", "/petshop.by/admin/orderss").permitAll()
+                .antMatchers("/petshop.by/").permitAll()
                 .anyRequest().authenticated();
 
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);

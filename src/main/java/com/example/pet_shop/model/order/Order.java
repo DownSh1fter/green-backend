@@ -1,5 +1,6 @@
 package com.example.pet_shop.model.order;
 
+import com.example.pet_shop.model.client.register.RegisterClient;
 import com.example.pet_shop.model.client.unregister.UnregisterClient;
 import com.example.pet_shop.model.product.Product;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -47,6 +48,10 @@ public class Order {
    @JoinColumn(name = "unregister_client_id_fk")
     UnregisterClient unregisterClient;
 
+    @ManyToOne
+    @JoinColumn(name = "register_client_id_fk")
+    RegisterClient registerClient;
+
     public long getOrderId() {
         return orderId;
     }
@@ -93,5 +98,13 @@ public class Order {
 
     public void setUnregisterClient(UnregisterClient unregisterClient) {
         this.unregisterClient = unregisterClient;
+    }
+
+    public RegisterClient getRegisterClient() {
+        return registerClient;
+    }
+
+    public void setRegisterClient(RegisterClient registerClient) {
+        this.registerClient = registerClient;
     }
 }
