@@ -8,11 +8,11 @@
         <version>2.2.1.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.example.pet_shop</groupId>
-    <artifactId>pet_shop</artifactId>
+    <groupId>com.example.green</groupId>
+    <artifactId>green</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
-    <name>pet_shop</name>
+    <name>green</name>
     <description>diplom est'?a esli naidu?</description>
 
     <properties>
